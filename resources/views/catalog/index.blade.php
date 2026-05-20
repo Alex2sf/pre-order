@@ -87,7 +87,7 @@
         <div class="flex items-end justify-between mb-10">
             <div>
                 <h2 class="text-2xl sm:text-3xl font-black text-slate-800">Produk Tersedia</h2>
-                <p class="text-slate-400 mt-1 text-sm">{{ $products->total() }} produk siap dipesan</p>
+                <p class="text-slate-400 mt-1 text-sm">{{ $products->count() }} produk siap dipesan</p>
             </div>
         </div>
 
@@ -195,9 +195,6 @@
             @endforelse
         </div>
 
-        @if($products->hasPages())
-        <div class="mt-10">{{ $products->links() }}</div>
-        @endif
     </section>
 
     {{-- Footer --}}
