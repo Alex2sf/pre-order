@@ -1,151 +1,190 @@
-<x-base-layout title="Daftar">
-    <div class="min-h-screen flex items-center justify-center bg-slate-50 p-6">
-        <div class="w-full max-w-xl bg-white rounded-2xl border border-slate-200 shadow-sm p-8" style="animation: slideInUp 0.5s ease;">
-            
-            <div class="mb-8 text-center">
-                <h2 class="text-3xl font-extrabold text-slate-800 mb-2">Daftar Bisnis</h2>
-                <p class="text-slate-400 text-sm">Buat akun dan langsung mulai terima pre-order</p>
+<!DOCTYPE html>
+<html lang="id" class="antialiased">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Akun - WarungGalih Pre-Order</title>
+    <link rel="icon" href="{{ asset('favicon.ico') }}">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="min-h-screen flex">
+
+    <!-- Left Panel: Branding -->
+    <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-violet-600 via-indigo-700 to-purple-800 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-purple-300 rounded-full blur-3xl"></div>
+            <div class="absolute top-1/2 left-1/3 w-64 h-64 bg-indigo-300 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="relative z-10 flex flex-col justify-between p-12 text-white w-full">
+            <div>
+                <div class="flex items-center gap-3 mb-2">
+                    <div class="w-12 h-12 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center p-2.5 shadow-sm border border-white/20">
+                        <svg class="w-full h-full text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                        </svg>
+                    </div>
+                    <span class="text-2xl font-black tracking-tight">WarungGalih<span class="font-light opacity-80">Pre-Order</span></span>
+                </div>
             </div>
 
-            @if(session('error'))
-            <div class="mb-5 p-4 rounded-xl flex items-start gap-3 text-sm" style="background: #fef2f2; border: 1px solid #fecaca; color: #dc2626;">
-                <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span>{{ session('error') }}</span>
+            <div class="space-y-6">
+                <h1 class="text-4xl font-black leading-tight">Mulai perjalanan <br>bisnis pre-order <br>Anda hari ini.</h1>
+                <p class="text-lg text-violet-200 max-w-md leading-relaxed">Daftar gratis dan nikmati sistem manajemen pre-order profesional yang akan membantu Anda mengelola pesanan dengan lebih efisien.</p>
+                
+                <div class="space-y-4 pt-4">
+                    <div class="flex items-center gap-3 text-violet-100">
+                        <div class="w-6 h-6 bg-emerald-400/20 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="check" class="w-4 h-4 text-emerald-300"></i>
+                        </div>
+                        <span class="text-sm font-medium">Dashboard penjualan & statistik pesanan</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-violet-100">
+                        <div class="w-6 h-6 bg-emerald-400/20 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="check" class="w-4 h-4 text-emerald-300"></i>
+                        </div>
+                        <span class="text-sm font-medium">Manajemen katalog produk & varian</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-violet-100">
+                        <div class="w-6 h-6 bg-emerald-400/20 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="check" class="w-4 h-4 text-emerald-300"></i>
+                        </div>
+                        <span class="text-sm font-medium">Lacak pesanan otomatis oleh pelanggan</span>
+                    </div>
+                </div>
             </div>
-            @endif
+
+            <div class="text-violet-300 text-sm">
+                &copy; {{ date('Y') }} WarungGalih Pre-Order. All rights reserved.
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Panel: Register Form -->
+    <div class="flex-1 flex items-center justify-center p-6 sm:p-8 bg-slate-50">
+        <div class="w-full max-w-md space-y-6">
+            <!-- Mobile Logo -->
+            <div class="lg:hidden text-center mb-4">
+                <div class="flex items-center justify-center gap-2 mb-2">
+                    <div class="w-12 h-12 bg-violet-600 rounded-xl flex items-center justify-center p-2.5 shadow-sm text-white">
+                        <svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                        </svg>
+                    </div>
+                    <span class="text-2xl font-black text-slate-800 tracking-tight">WarungGalih<span class="font-light text-violet-600">Pre-Order</span></span>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="text-3xl font-black text-slate-800 tracking-tight">Buat Akun Baru 🚀</h2>
+                <p class="text-slate-500 mt-2">Daftarkan usaha Anda dan mulai kelola pre-order.</p>
+            </div>
 
             @if($errors->any())
-            <div class="mb-5 p-4 rounded-xl text-sm" style="background: #fef2f2; border: 1px solid #fecaca; color: #dc2626;">
-                <ul class="list-disc list-inside space-y-1">
-                    @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
+                <div class="bg-red-50 text-red-600 p-4 rounded-xl border border-red-100 text-sm">
+                    <ul class="list-disc list-inside font-medium">
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
             @endif
 
             <form method="POST" action="{{ route('register') }}" class="space-y-4">
                 @csrf
 
-                {{-- Store Name --}}
+                <!-- Store Name -->
                 <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-2">Nama Bisnis / Toko</label>
+                    <label for="store_name" class="block text-sm font-semibold text-slate-700 mb-1.5">Nama Bisnis / Toko</label>
                     <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-                        </div>
-                        <input type="text" name="store_name" value="{{ old('store_name') }}" required
-                               class="w-full pl-12 pr-4 py-3.5 rounded-xl border text-sm font-medium outline-none transition-all
-                                      bg-slate-50 border-slate-200 text-slate-800 placeholder-slate-400
-                                      focus:border-violet-500 focus:ring-4 focus:ring-violet-500/10"
+                        <i data-lucide="store" class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400"></i>
+                        <input id="store_name" type="text" name="store_name" value="{{ old('store_name') }}" required 
+                               class="w-full pl-10 pr-4 py-3 bg-white border border-slate-200 rounded-xl focus:border-violet-500 focus:ring-2 focus:ring-violet-100 transition-all text-sm shadow-sm" 
                                placeholder="Contoh: Jus Segar Mba Ani">
                     </div>
                 </div>
 
-                {{-- Owner Name --}}
+                <!-- Owner Name -->
                 <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-2">Nama Pemilik</label>
+                    <label for="name" class="block text-sm font-semibold text-slate-700 mb-1.5">Nama Pemilik</label>
                     <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-                        </div>
-                        <input type="text" name="name" value="{{ old('name') }}" required
-                               class="w-full pl-12 pr-4 py-3.5 rounded-xl border text-sm font-medium outline-none transition-all
-                                      bg-slate-50 border-slate-200 text-slate-800 placeholder-slate-400
-                                      focus:border-violet-500 focus:ring-4 focus:ring-violet-500/10"
+                        <i data-lucide="user" class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400"></i>
+                        <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus
+                               class="w-full pl-10 pr-4 py-3 bg-white border border-slate-200 rounded-xl focus:border-violet-500 focus:ring-2 focus:ring-violet-100 transition-all text-sm shadow-sm" 
                                placeholder="Nama lengkap Anda">
                     </div>
                 </div>
 
-                {{-- Email & Phone --}}
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Email -->
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-2">Email</label>
+                        <label for="email" class="block text-sm font-semibold text-slate-700 mb-1.5">Email</label>
                         <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"/></svg>
-                            </div>
-                            <input type="email" name="email" value="{{ old('email') }}" required
-                                   class="w-full pl-12 pr-4 py-3.5 rounded-xl border text-sm font-medium outline-none transition-all
-                                          bg-slate-50 border-slate-200 text-slate-800 placeholder-slate-400
-                                          focus:border-violet-500 focus:ring-4 focus:ring-violet-500/10"
-                                   placeholder="email@contoh.com">
+                            <i data-lucide="mail" class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400"></i>
+                            <input id="email" type="email" name="email" value="{{ old('email') }}" required 
+                                   class="w-full pl-10 pr-4 py-3 bg-white border border-slate-200 rounded-xl focus:border-violet-500 focus:ring-2 focus:ring-violet-100 transition-all text-sm shadow-sm" 
+                                   placeholder="nama@email.com">
                         </div>
                     </div>
+
+                    <!-- Phone -->
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-2">No. WhatsApp</label>
+                        <label for="phone" class="block text-sm font-semibold text-slate-700 mb-1.5">No. WhatsApp</label>
                         <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-                            </div>
-                            <input type="text" name="phone" value="{{ old('phone') }}"
-                                   class="w-full pl-12 pr-4 py-3.5 rounded-xl border text-sm font-medium outline-none transition-all
-                                          bg-slate-50 border-slate-200 text-slate-800 placeholder-slate-400
-                                          focus:border-violet-500 focus:ring-4 focus:ring-violet-500/10"
+                            <i data-lucide="phone" class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400"></i>
+                            <input id="phone" type="text" name="phone" value="{{ old('phone') }}" required 
+                                   class="w-full pl-10 pr-4 py-3 bg-white border border-slate-200 rounded-xl focus:border-violet-500 focus:ring-2 focus:ring-violet-100 transition-all text-sm shadow-sm" 
                                    placeholder="08xxxxxxxxxx">
                         </div>
                     </div>
                 </div>
 
-                {{-- Passwords --}}
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Password -->
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-2">Password</label>
+                        <label for="password" class="block text-sm font-semibold text-slate-700 mb-1.5">Password</label>
                         <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-                            </div>
-                            <input type="password" name="password" required
-                                   class="w-full pl-12 pr-4 py-3.5 rounded-xl border text-sm font-medium outline-none transition-all
-                                          bg-slate-50 border-slate-200 text-slate-800 placeholder-slate-400
-                                          focus:border-violet-500 focus:ring-4 focus:ring-violet-500/10"
+                            <i data-lucide="lock" class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400"></i>
+                            <input id="password" type="password" name="password" required 
+                                   class="w-full pl-10 pr-4 py-3 bg-white border border-slate-200 rounded-xl focus:border-violet-500 focus:ring-2 focus:ring-violet-100 transition-all text-sm shadow-sm" 
                                    placeholder="Min. 8 karakter">
                         </div>
                     </div>
+
+                    <!-- Confirm Password -->
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-2">Konfirmasi</label>
+                        <label for="password_confirmation" class="block text-sm font-semibold text-slate-700 mb-1.5">Ulangi Password</label>
                         <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                            </div>
-                            <input type="password" name="password_confirmation" required
-                                   class="w-full pl-12 pr-4 py-3.5 rounded-xl border text-sm font-medium outline-none transition-all
-                                          bg-slate-50 border-slate-200 text-slate-800 placeholder-slate-400
-                                          focus:border-violet-500 focus:ring-4 focus:ring-violet-500/10"
-                                   placeholder="Ulangi password">
+                            <i data-lucide="lock" class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400"></i>
+                            <input id="password_confirmation" type="password" name="password_confirmation" required 
+                                   class="w-full pl-10 pr-4 py-3 bg-white border border-slate-200 rounded-xl focus:border-violet-500 focus:ring-2 focus:ring-violet-100 transition-all text-sm shadow-sm" 
+                                   placeholder="Ketik ulang password">
                         </div>
                     </div>
                 </div>
 
-                <button type="submit"
-                        class="w-full py-3.5 rounded-xl text-white text-sm font-bold tracking-wide transition-all duration-300 relative overflow-hidden group"
-                        style="background: linear-gradient(135deg, #7c3aed, #6366f1); box-shadow: 0 4px 20px rgba(124,58,237,0.4);"
-                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 30px rgba(124,58,237,0.5)'"
-                        onmouseout="this.style.transform=''; this.style.boxShadow='0 4px 20px rgba(124,58,237,0.4)'">
-                    <span class="relative z-10 flex items-center justify-center gap-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                        Daftar Sekarang — Gratis!
-                    </span>
+                <button type="submit" class="w-full bg-violet-600 hover:bg-violet-700 text-white font-bold py-3 px-4 rounded-xl transition-all shadow-lg shadow-violet-200 flex items-center justify-center gap-2 text-sm mt-2">
+                    <i data-lucide="user-plus" class="w-5 h-5"></i>
+                    Daftar Sekarang
                 </button>
             </form>
 
-            <div class="my-7 flex items-center gap-4">
-                <div class="flex-1 h-px bg-slate-200"></div>
-                <span class="text-xs text-slate-400 font-medium">ATAU</span>
-                <div class="flex-1 h-px bg-slate-200"></div>
+            <div class="text-center pt-1">
+                <p class="text-sm text-slate-500">Sudah punya akun? 
+                    <a href="{{ route('login') }}" class="text-violet-600 hover:text-violet-700 font-bold">Masuk di sini</a>
+                </p>
             </div>
-
-            <a href="{{ route('login') }}"
-               class="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl text-sm font-bold transition-all duration-300
-                      border-2 border-slate-200 text-slate-600
-                      hover:border-violet-400 hover:text-violet-600 hover:bg-violet-50">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
-                Sudah punya akun? Masuk
-            </a>
         </div>
     </div>
 
-    <style>
-        @keyframes slideInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    </style>
-</x-base-layout>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
