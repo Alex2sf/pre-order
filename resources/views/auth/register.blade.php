@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Akun - WarungGalih Pre-Order</title>
-    <link rel="icon" href="{{ asset('favicon.ico') }}">
+    <link rel="icon" href="{{ asset('storage/logo.png') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -25,10 +25,8 @@
         <div class="relative z-10 flex flex-col justify-between p-12 text-white w-full">
             <div>
                 <div class="flex items-center gap-3 mb-2">
-                    <div class="w-12 h-12 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center p-2.5 shadow-sm border border-white/20">
-                        <svg class="w-full h-full text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                        </svg>
+                    <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center p-2 shadow-sm border border-white/10">
+                        <img src="{{ asset('storage/logo.png') }}" alt="Logo" class="w-full h-full object-contain">
                     </div>
                     <span class="text-2xl font-black tracking-tight">WarungGalih<span class="font-light opacity-80">Pre-Order</span></span>
                 </div>
@@ -72,10 +70,8 @@
             <!-- Mobile Logo -->
             <div class="lg:hidden text-center mb-4">
                 <div class="flex items-center justify-center gap-2 mb-2">
-                    <div class="w-12 h-12 bg-violet-600 rounded-xl flex items-center justify-center p-2.5 shadow-sm text-white">
-                        <svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                        </svg>
+                    <div class="w-12 h-12 bg-white border border-slate-200 rounded-xl flex items-center justify-center p-2 shadow-sm">
+                        <img src="{{ asset('storage/logo.png') }}" alt="Logo" class="w-full h-full object-contain">
                     </div>
                     <span class="text-2xl font-black text-slate-800 tracking-tight">WarungGalih<span class="font-light text-violet-600">Pre-Order</span></span>
                 </div>
