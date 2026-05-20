@@ -10,6 +10,13 @@
         @forelse($products as $product)
         <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-5 hover:shadow-md transition">
             <div class="flex items-start justify-between gap-4">
+                <div class="w-20 h-20 rounded-xl bg-slate-50 border border-slate-200/60 flex-shrink-0 overflow-hidden flex items-center justify-center">
+                    @if($product->image_path)
+                        <img src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->name }}" class="w-full h-full object-cover">
+                    @else
+                        <span class="text-2xl">📦</span>
+                    @endif
+                </div>
                 <div class="flex-1 min-w-0">
                     <div class="flex items-center gap-3 mb-2">
                         <h3 class="font-bold text-lg truncate">{{ $product->name }}</h3>

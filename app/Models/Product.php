@@ -13,7 +13,7 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'tenant_id', 'name', 'description', 'base_price',
+        'tenant_id', 'name', 'description', 'image_path', 'base_price',
         'is_preorder', 'po_start_date', 'po_end_date',
         'estimated_delivery_days', 'estimated_delivery_date',
         'quota', 'min_dp_percent', 'is_active',

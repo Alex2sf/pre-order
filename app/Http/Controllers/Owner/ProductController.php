@@ -31,6 +31,7 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             'base_price' => 'required|numeric|min:0',
             'is_preorder' => 'boolean',
             'po_start_date' => 'nullable|date',
@@ -40,13 +41,19 @@ class ProductController extends Controller
             'min_dp_percent' => 'required|integer|min:1|max:100',
         ]);
 
+        $data = $request->only([
+            'name', 'description', 'base_price',
+            'is_preorder', 'po_start_date', 'po_end_date',
+            'estimated_delivery_days', 'quota', 'min_dp_percent',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $data['image_path'] = $request->file('image')->store('products', 'public');
+        }
+
         Product::create([
             'tenant_id' => $this->tenantId(),
-            ...$request->only([
-                'name', 'description', 'base_price',
-                'is_preorder', 'po_start_date', 'po_end_date',
-                'estimated_delivery_days', 'quota', 'min_dp_percent',
-            ]),
+            ...$data,
         ]);
 
         return redirect()->route('owner.products.index')->with('success', 'Produk berhasil ditambahkan! 🎉');
@@ -66,6 +73,7 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             'base_price' => 'required|numeric|min:0',
             'is_preorder' => 'boolean',
             'po_start_date' => 'nullable|date',
@@ -75,11 +83,20 @@ class ProductController extends Controller
             'min_dp_percent' => 'required|integer|min:1|max:100',
         ]);
 
-        $product->update($request->only([
+        $data = $request->only([
             'name', 'description', 'base_price',
             'is_preorder', 'po_start_date', 'po_end_date',
             'estimated_delivery_days', 'quota', 'min_dp_percent',
-        ]));
+        ]);
+
+        if ($request->hasFile('image')) {
+            if ($product->image_path) {
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($product->image_path);
+            }
+            $data['image_path'] = $request->file('image')->store('products', 'public');
+        }
+
+        $product->update($data);
 
         return redirect()->route('owner.products.index')->with('success', 'Produk berhasil diperbarui!');
     }

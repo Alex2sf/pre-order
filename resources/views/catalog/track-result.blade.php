@@ -62,14 +62,21 @@
         <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 mb-6">
             <h3 class="font-bold text-lg mb-4">📦 Item Pesanan</h3>
             @foreach($order->items as $item)
-            <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 mb-2">
-                <div>
-                    <p class="font-semibold">{{ $item->product_name }}</p>
+            <div class="flex items-center gap-4 p-3 rounded-xl bg-slate-50 mb-2">
+                <div class="w-12 h-12 rounded-lg bg-slate-200/60 border border-slate-200/40 flex-shrink-0 overflow-hidden flex items-center justify-center">
+                    @if($item->product && $item->product->image_path)
+                        <img src="{{ asset('storage/' . $item->product->image_path) }}" alt="{{ $item->product_name }}" class="w-full h-full object-cover">
+                    @else
+                        <span class="text-xl">📦</span>
+                    @endif
+                </div>
+                <div class="flex-1 min-w-0">
+                    <p class="font-semibold truncate">{{ $item->product_name }}</p>
                     @if($item->variant_name)
                     <p class="text-xs text-slate-400">Varian: {{ $item->variant_name }}</p>
                     @endif
                 </div>
-                <div class="text-right">
+                <div class="text-right shrink-0">
                     <p class="text-sm text-slate-500">{{ $item->quantity }}x Rp {{ number_format($item->price, 0, ',', '.') }}</p>
                     <p class="font-bold text-violet-600">Rp {{ number_format($item->subtotal, 0, ',', '.') }}</p>
                 </div>

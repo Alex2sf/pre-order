@@ -2,6 +2,7 @@
     <div class="max-w-3xl">
         <form method="POST" action="{{ isset($product) ? route('owner.products.update', $product) : route('owner.products.store') }}" 
               x-data="{ isPreorder: {{ isset($product) ? ($product->is_preorder ? 'true' : 'false') : 'true' }} }"
+              enctype="multipart/form-data"
               class="space-y-6">
             @csrf
             @isset($product) @method('PUT') @endisset
@@ -24,6 +25,19 @@
                     <input type="number" name="base_price" value="{{ old('base_price', $product->base_price ?? '') }}" required min="0"
                            class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-violet-500 focus:border-transparent transition" placeholder="15000">
                     @error('base_price') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-slate-600 mb-1">Gambar Produk</label>
+                    @if(isset($product) && $product->image_path)
+                        <div class="mb-3 flex items-center gap-3 p-3 bg-slate-50 border border-slate-100 rounded-xl">
+                            <img src="{{ asset('storage/' . $product->image_path) }}" alt="Preview" class="w-16 h-16 object-cover rounded-lg border">
+                            <span class="text-xs text-slate-400">Gambar saat ini</span>
+                        </div>
+                    @endif
+                    <input type="file" name="image" accept="image/*"
+                           class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-violet-500 focus:border-transparent transition file:mr-4 file:py-1.5 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-violet-50 file:text-violet-600 hover:file:bg-violet-100 cursor-pointer">
+                    <p class="text-xs text-slate-400 mt-1">Format: JPG, JPEG, PNG, WEBP. Maks 2MB.</p>
+                    @error('image') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                 </div>
             </div>
 

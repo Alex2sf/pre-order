@@ -32,8 +32,14 @@
             {{-- Left: Product Info --}}
             <div class="lg:col-span-3 space-y-6">
                 {{-- Banner --}}
-                <div class="h-56 bg-gradient-to-br from-violet-500 to-indigo-600 rounded-3xl flex items-center justify-center relative overflow-hidden">
-                    <span class="text-8xl">{{ $product->is_preorder ? '📦' : '🛒' }}</span>
+                <div class="h-64 sm:h-80 bg-gradient-to-br from-slate-100 to-slate-200 rounded-3xl flex items-center justify-center relative overflow-hidden border border-slate-100 shadow-inner">
+                    @if($product->image_path)
+                        <img src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->name }}" class="w-full h-full object-cover">
+                    @else
+                        <div class="w-full h-full bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center">
+                            <span class="text-8xl">{{ $product->is_preorder ? '📦' : '🛒' }}</span>
+                        </div>
+                    @endif
                     <div class="absolute top-4 right-4 flex items-center gap-2">
                         @if($product->is_open)
                         <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-emerald-400/90 text-white">✅ Buka</span>

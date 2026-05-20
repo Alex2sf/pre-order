@@ -41,8 +41,14 @@
             @forelse($products as $product)
             <a href="{{ route('store.show', [$tenant->slug, $product]) }}" class="group bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                 {{-- Card Header / Color Banner --}}
-                <div class="h-40 bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center relative">
-                    <span class="text-6xl">{{ $product->is_preorder ? '📦' : '🛒' }}</span>
+                <div class="h-48 bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center relative overflow-hidden">
+                    @if($product->image_path)
+                        <img src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    @else
+                        <div class="w-full h-full bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center">
+                            <span class="text-6xl">{{ $product->is_preorder ? '📦' : '🛒' }}</span>
+                        </div>
+                    @endif
 
                     {{-- Status Badge --}}
                     <div class="absolute top-3 right-3">
