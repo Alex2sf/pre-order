@@ -12,17 +12,17 @@
                 </a>
             </div>
             <nav class="flex-1 p-4 space-y-1">
-                <a href="{{ route('owner.dashboard') }}" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition {{ request()->routeIs('owner.dashboard') ? 'bg-white/10 text-white' : 'text-slate-300 hover:bg-white/5 hover:text-white' }}">
+                <a href="{{ route('owner.dashboard') }}" id="sidebar-dashboard" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition {{ request()->routeIs('owner.dashboard') ? 'bg-white/10 text-white' : 'text-slate-300 hover:bg-white/5 hover:text-white' }}">
                     <span>📊</span> Dashboard
                 </a>
-                <a href="{{ route('owner.products.index') }}" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition {{ request()->routeIs('owner.products.*') ? 'bg-white/10 text-white' : 'text-slate-300 hover:bg-white/5 hover:text-white' }}">
+                <a href="{{ route('owner.products.index') }}" id="sidebar-produk" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition {{ request()->routeIs('owner.products.*') ? 'bg-white/10 text-white' : 'text-slate-300 hover:bg-white/5 hover:text-white' }}">
                     <span>📦</span> Produk
                 </a>
-                <a href="{{ route('owner.orders.index') }}" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition {{ request()->routeIs('owner.orders.*') ? 'bg-white/10 text-white' : 'text-slate-300 hover:bg-white/5 hover:text-white' }}">
+                <a href="{{ route('owner.orders.index') }}" id="sidebar-pesanan" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition {{ request()->routeIs('owner.orders.*') ? 'bg-white/10 text-white' : 'text-slate-300 hover:bg-white/5 hover:text-white' }}">
                     <span>🛒</span> Pesanan
                 </a>
                 <div class="pt-4 border-t border-slate-700/50 mt-4">
-                    <a href="{{ route('store', Auth::user()->tenant->slug ?? '#') }}" target="_blank" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-300 hover:bg-white/5 hover:text-white transition">
+                    <a href="{{ route('store', Auth::user()->tenant->slug ?? '#') }}" target="_blank" id="sidebar-toko" class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-300 hover:bg-white/5 hover:text-white transition">
                         <span>🌐</span> Lihat Toko
                     </a>
                 </div>
